@@ -83,7 +83,6 @@ public abstract class DataView<T> {
         System.out.println("Record not found.");
     }
 
-    // Mengembalikan nilai primary key dari objek data.
     protected abstract String getPrimaryKeyValue(T data);
     
     protected abstract String[] getFields();
