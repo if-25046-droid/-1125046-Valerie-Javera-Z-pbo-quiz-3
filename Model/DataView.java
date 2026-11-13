@@ -1,19 +1,24 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class GenerikUtil {
-    // Generic method: menerima tipe data apa pun.
-    public static <T> void tampilkanData(T data) {
-        System.out.println("Data: " + data);
+public class DataView<T> {
+    private List<T> record;
+}
+
+    DataView(List<T> record) {
+        this.record = record;
     }
 
-    // Bounded type: T harus ProdukMakanan atau turunannya.
-    public static <T extends ProdukMakanan> void tampilkanDetailProduk(List<T> daftar) {
-        for (T produk : daftar) {
-            produk.tampilkanDetail();
-        }
+   //Mencetak seluruh data di records berdasarkan header dari getFields() dan isi data dari convertModelToValues(T data).
+    public static <T extends DataView<T>> void printAll(List<T> record) {
+        
     }
+
+
+
+
 
     // Unbounded wildcard: menerima List dengan tipe elemen apa pun.
     public static void tampilkanSemuaTipe(List<?> daftar) {

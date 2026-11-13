@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuManager implements Repository<ProdukMakanan> {
-    private final List<ProdukMakanan> daftarProduk = new ArrayList<>();
+   
 
     @Override
     public void tambah(ProdukMakanan data) {
