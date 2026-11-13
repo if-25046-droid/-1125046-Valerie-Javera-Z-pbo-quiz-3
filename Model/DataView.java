@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataView<T> {
+public abstract class DataView<T> {
     private List<T> record;
 }
 
@@ -11,31 +11,43 @@ public class DataView<T> {
         this.record = record;
     }
 
-   //Mencetak seluruh data di records berdasarkan header dari getFields() dan isi data dari convertModelToValues(T data).
-    public static <T extends DataView<T>> void printAll(List<T> record) {
-        
-    }
-
-
-
-
-
-    // Unbounded wildcard: menerima List dengan tipe elemen apa pun.
-    public static void tampilkanSemuaTipe(List<?> daftar) {
-        for (Object data : daftar) {
-            System.out.println(data);
+    public void printAll() {
+        for (int i = 0; i < record.size(); i++) {
+            T data = record.get(i);
+            String[] values = convertModelToValues(data);
+            String[] fields = getFields();
+            for (int j = 0; j < fields.length; j++) {
+                System.out.print(fields[j] + ": " + values[j]);
+            }
+            System.out.println();
         }
     }
 
-    // Upper bounded wildcard: menerima ProdukMakanan atau subclass-nya.
-    public static void tampilkanProduk(List<? extends ProdukMakanan> daftar) {
-        for (ProdukMakanan produk : daftar) {
-            produk.tampilkanDetail();
-        }
+    //Mencari data berdasarkan primaryKey menggunakan getPrimaryKeyValue(T data), lalu mencetak satu data tersebut berdasarkan getFields() dan convertModelToValues(T data).
+    public void printByPk(String primaryKey){
     }
 
-    // Lower bounded wildcard: dapat menerima RiceBowl, ProdukMakanan, atau Object.
-    public static void tambahkanRiceBowl(List<? super RiceBowl> daftar, RiceBowl produk) {
-        daftar.add(produk);
+    public void showInsertForm(){
     }
-}
+    
+    public void showUpdateForm(){
+
+    }
+
+    public void promptDelete(){
+    }
+
+    protected abstract String getPrimaryKeyValue(T data){
+
+    }
+    
+    protected abstract String[] getFields(){
+
+    }
+
+    protected abstract T convertValuesToModel(String[] values){
+    }
+
+    protected abstract String[] convertModelToValues(T data){
+
+    }
